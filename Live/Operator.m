@@ -52,47 +52,62 @@ BOOL switchFixedD;
     displayRect.size.width = rectangle.size.width / 3;
     [self drawRectangeInSize:displayRect withRoundedEdges:10.0 withFillColor:[UIColor blackColor] inContext:context];
     
-    
+    //TODO move to super class
     int instrumentBarHeight = 35;
     
-    // osc D
-    CGRect oscDRect;
-    oscDRect.origin.x = rectangle.origin.x + 4;
-    oscDRect.origin.y = rectangle.origin.y + instrumentBarHeight;
-    oscDRect.size.height = (rectangle.size.height - instrumentBarHeight) / 4;
-    oscDRect.size.width = (rectangle.size.width / 3) - 15;
-    UIColor* rowUnselectedColor = [[UIColor alloc] initWithRed:197.0 / 255 green:201.0 / 255 blue:213.0 / 255 alpha:1.0];
     
-    [self drawRectangeInSize:oscDRect withRoundedEdges:10.0 withFillColor:rowUnselectedColor inContext:context];
+    CGRect oscRect;
+    oscRect.origin.x = rectangle.origin.x + 4;
+    oscRect.origin.y = rectangle.origin.y + instrumentBarHeight;
+    oscRect.size.height = (rectangle.size.height - instrumentBarHeight) / 5;
+    oscRect.size.width = (rectangle.size.width / 3) - 15;
     
-    /*
-    // left knobs, row D
-    CGPoint knob1Position;
-    knob1Position.x = bgRect.origin.x + 35;
-    knob1Position.y = bgRect.origin.y + instrumentBarHeight + 45;
-    [self drawKnobAtPoint:knob1Position withLabel:@"Coarse" andValueLabel:@"1" inContext:context];
+    [self drawOscInSize:oscRect withName:@"D" inContext:context];
+
+    oscRect.origin.y = oscRect.origin.y + oscRect.size.height + (oscRect.size.height/8) ;
+    [self drawOscInSize:oscRect withName:@"C" inContext:context];
     
-    CGPoint knob2Position;
-    knob2Position.x = knob1Position.x + 100;
-    knob2Position.y = knob1Position.y;
-    [self drawKnobAtPoint:knob2Position withLabel:@"Fine" andValueLabel:@"0" inContext:context];
+    oscRect.origin.y = oscRect.origin.y + oscRect.size.height + (oscRect.size.height/8) ;
+    [self drawOscInSize:oscRect withName:@"B" inContext:context];
     
-    CGPoint knob3Position;
-    knob3Position.x = knob2Position.x + 140;
-    knob3Position.y = knob2Position.y;
-    [self drawKnobAtPoint:knob3Position withLabel:@"Level" andValueLabel:@"-inf dB" inContext:context];
-    
-    */
-    
-    
-    knobCoarseD = [Knob new];
-    
-    int distanceX = 15;
-    int distanceY = 60;
-    [knobCoarseD drawAt:CGPointMake(rectangle.origin.x + distanceX, rectangle.origin.y + distanceY) withLabel:@"Coarse" andValueLabel:@"1" inContext:context];
+    oscRect.origin.y = oscRect.origin.y + oscRect.size.height + (oscRect.size.height/8) ;
+    [self drawOscInSize:oscRect withName:@"A" inContext:context];
     
     
     UIGraphicsPopContext();
+}
+
+-(void) drawOscInSize:(CGRect)rectangle
+             withName:(NSString*)oscName
+            inContext:(CGContextRef)context
+{
+    // osc D
+    
+    UIColor* rowUnselectedColor = [[UIColor alloc] initWithRed:197.0 / 255 green:201.0 / 255 blue:213.0 / 255 alpha:1.0];
+    
+    [self drawRectangeInSize:rectangle withRoundedEdges:10.0 withFillColor:rowUnselectedColor inContext:context];
+    
+    int knobSize = rectangle.size.height * 0.95;
+    knobCoarseD = [Knob new];
+    
+    int distanceX = 15;
+    [knobCoarseD drawAt:CGRectMake(rectangle.origin.x + distanceX,
+                                   rectangle.origin.y, knobSize,knobSize)
+              withLabel:@"Coarse" andValueLabel:@"1" inContext:context];
+    
+    knobFineD = [Knob new];
+    distanceX += knobSize + 25;
+    [knobFineD drawAt:CGRectMake(rectangle.origin.x + distanceX,
+                                   rectangle.origin.y, knobSize,knobSize)
+              withLabel:@"Fine" andValueLabel:@"0" inContext:context];
+    
+
+    knobLevelD = [Knob new];
+    distanceX += knobSize + 60;
+    [knobLevelD drawAt:CGRectMake(rectangle.origin.x + distanceX,
+                                 rectangle.origin.y, knobSize,knobSize)
+            withLabel:@"Level" andValueLabel:@"-inf dB" inContext:context];
+    
 }
 
 

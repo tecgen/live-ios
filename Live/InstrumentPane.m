@@ -14,7 +14,7 @@
 #define MAX_NUMBER_OF_AUDIO_EFX 4
 
 #define MARGIN_WIDTH 25
-#define MARGIN_HEIGHT 8
+#define MARGIN_HEIGHT 10
 
 @implementation InstrumentPane
 

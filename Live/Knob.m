@@ -11,20 +11,21 @@
 @implementation Knob
 
 
--(void) drawAt:(CGPoint)point
+-(void) drawAt:(CGRect)rectangle
      withLabel:(NSString*)description
  andValueLabel:(NSString*)valueLabel
      inContext:(CGContextRef)context
 {
     UIGraphicsPushContext(context);
     
-    //CGContextAddRect(context, CGRectMake(point.x, point.y, 36, 36));
+    //debug knob rectangle size
+    //CGContextAddRect(context, rectangle);
     
     // 3/4 of a circle as background circle, always visible
-    int radius = 18;
+    int radius = (rectangle.size.width / 4);
     CGPoint centerOfKnob;
-    centerOfKnob.x = point.x + radius;
-    centerOfKnob.y = point.y + radius;
+    centerOfKnob.x = rectangle.origin.x + radius;
+    centerOfKnob.y = rectangle.origin.y + (rectangle.size.height/1.5);
     
     UIBezierPath* knobBG = [UIBezierPath bezierPathWithArcCenter:centerOfKnob radius:radius startAngle:M_PI_2 endAngle:0 clockwise:YES];
     
@@ -39,7 +40,7 @@
      [knobFG setLineWidth:4.0];
      [[UIColor orangeColor] setStroke];
      [knobFG stroke];
-     */
+    */
     
     // line, always black
     [[UIColor blackColor] setStroke];
@@ -64,11 +65,11 @@
     [valueLabel drawInRect:valueRectString withFont:valueFont];
     
     // description
-    CGPoint knobTextPosition = CGPointMake(centerOfKnob.x+7, centerOfKnob.y-38);
+    CGPoint knobTextPosition = CGPointMake(rectangle.origin.x, rectangle.origin.y);
     UIFont *knobTextFont = [UIFont systemFontOfSize:18];
     
     CGSize knobRectStringSize = [description sizeWithFont:valueFont];
-    CGRect knobRectString = CGRectMake(knobTextPosition.x - (radius*1.5), knobTextPosition.y - (radius/4), knobRectStringSize.width, knobRectStringSize.height);
+    CGRect knobRectString = CGRectMake(knobTextPosition.x, knobTextPosition.y, knobRectStringSize.width, knobRectStringSize.height);
     // fill text bg
     /*
      [[UIColor greenColor] set];

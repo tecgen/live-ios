@@ -10,7 +10,7 @@
 
 @interface Knob : NSObject
 
--(void) drawAt:(CGPoint)point
+-(void) drawAt:(CGRect)rectangle
      withLabel:(NSString*)description
  andValueLabel:(NSString*)valueLabel
      inContext:(CGContextRef)context;
