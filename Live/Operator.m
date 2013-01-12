@@ -44,11 +44,11 @@ BOOL switchFixedD;
     self.name = @"Operator";
     [self drawTitleIn:rectangle withMinimizeKnobVisible:YES inContext:context];
     
-    int paddingHeight = 8;
+    int paddingHeight = rectangle.size.height * 0.01;
     CGRect displayRect;
     displayRect.origin.x = rectangle.origin.x + (rectangle.size.width / 3);
     displayRect.origin.y = rectangle.origin.y + (2*paddingHeight);
-    displayRect.size.height = rectangle.size.height -(4*paddingHeight);
+    displayRect.size.height = rectangle.size.height - (4*paddingHeight);
     displayRect.size.width = rectangle.size.width / 3;
     [self drawRectangeInSize:displayRect withRoundedEdges:10.0 withFillColor:[UIColor blackColor] inContext:context];
     
@@ -59,8 +59,8 @@ BOOL switchFixedD;
     CGRect oscRect;
     oscRect.origin.x = rectangle.origin.x + 4;
     oscRect.origin.y = rectangle.origin.y + instrumentBarHeight;
-    oscRect.size.height = (rectangle.size.height - instrumentBarHeight) / 5;
-    oscRect.size.width = (rectangle.size.width / 3) - 15;
+    oscRect.size.height = (rectangle.size.height - 2*instrumentBarHeight) / 4 ;
+    oscRect.size.width = (rectangle.size.width / 3) * 0.97;
     
     [self drawOscInSize:oscRect withName:@"D" inContext:context];
 
@@ -81,12 +81,12 @@ BOOL switchFixedD;
              withName:(NSString*)oscName
             inContext:(CGContextRef)context
 {
-    // osc D
-    
     UIColor* rowUnselectedColor = [[UIColor alloc] initWithRed:197.0 / 255 green:201.0 / 255 blue:213.0 / 255 alpha:1.0];
     
+    // background
     [self drawRectangeInSize:rectangle withRoundedEdges:10.0 withFillColor:rowUnselectedColor inContext:context];
     
+    // first knob "Coarse"
     int knobSize = rectangle.size.height * 0.95;
     knobCoarseD = [Knob new];
     
@@ -101,12 +101,39 @@ BOOL switchFixedD;
                                    rectangle.origin.y, knobSize,knobSize)
               withLabel:@"Fine" andValueLabel:@"0" inContext:context];
     
-
     knobLevelD = [Knob new];
     distanceX += knobSize + 60;
     [knobLevelD drawAt:CGRectMake(rectangle.origin.x + distanceX,
                                  rectangle.origin.y, knobSize,knobSize)
             withLabel:@"Level" andValueLabel:@"-inf dB" inContext:context];
+    
+    // rectangle switch "Fixed"
+    [[UIColor darkGrayColor] setStroke];
+    [[UIColor lightGrayColor] setFill];
+    CGContextSetLineWidth(context, 2.0);
+    CGRect switchFixed = CGRectMake(rectangle.size.width/2 + 10, rectangle.origin.y + (rectangle.size.height/2), 18, 18);
+    CGContextFillRect(context, switchFixed);
+    CGContextStrokeRect(context, switchFixed);
+    
+    // the string "Fixed"
+    [[UIColor blackColor] setFill];
+    NSString *switchFixedDescription = @"Fixed";
+    CGPoint switchTextPosition = CGPointMake(rectangle.size.width/2, rectangle.origin.y);
+    UIFont *switchTextFont = [UIFont systemFontOfSize:18];
+    
+    CGSize switchRectStringSize = [switchFixedDescription sizeWithFont:switchTextFont];
+    CGRect switchRectString = CGRectMake(switchTextPosition.x, switchTextPosition.y,
+                                         switchRectStringSize.width, switchRectStringSize.height);
+    [switchFixedDescription drawInRect:switchRectString withFont:switchTextFont];
+    
+    // rectangle switch on/off 
+    [[UIColor darkGrayColor] setStroke];
+    [[UIColor orangeColor] setFill];
+    CGContextSetLineWidth(context, 2.0);
+    CGRect switchOnOff = CGRectMake(distanceX + (2*knobSize), rectangle.origin.y + (rectangle.size.height/3), 25, 25);
+    CGContextFillRect(context, switchOnOff);
+    CGContextStrokeRect(context, switchOnOff);
+
     
 }
 

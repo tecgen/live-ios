@@ -40,33 +40,63 @@ withMinimizeKnobVisible:(BOOL) minimizeKnobVisible
           inContext:(CGContextRef)context;
 {
     // instument on/off knob
-    int smallKnobRadius = 10;
+    int smallKnobRadius = 12;
     
+    // black outline
     CGPoint onKnobCenter;
     onKnobCenter.x = rectangle.origin.x + 18;
     onKnobCenter.y = rectangle.origin.y + 15;
     
-    UIBezierPath* onKnob = [UIBezierPath bezierPathWithArcCenter:onKnobCenter radius:smallKnobRadius startAngle:M_PI*2 endAngle:0 clockwise:YES];
+    UIBezierPath* onKnobOutline = [UIBezierPath bezierPathWithArcCenter:onKnobCenter
+                                                          radius:smallKnobRadius
+                                                      startAngle:M_PI * 2
+                                                        endAngle:0 clockwise:YES];
     
-    [onKnob setLineWidth:2.0];
+    [onKnobOutline setLineWidth:1.0];
     [[UIColor blackColor] setStroke];
+    [onKnobOutline stroke];
+    
+    // green inline
+    UIBezierPath* onKnob = [UIBezierPath bezierPathWithArcCenter:onKnobCenter
+                                                          radius:(smallKnobRadius-3)
+                                                      startAngle:M_PI * 2
+                                                        endAngle:0 clockwise:YES];
+    [onKnob setLineWidth:4.0];
+    [[UIColor greenColor] setStroke];
+    [[UIColor lightGrayColor] setFill];
     [onKnob stroke];
+    [onKnob fill];
+    
+    // green line in the middle 
+    CGContextBeginPath(context);
+    CGContextSetLineWidth(context, 2.5);
+    CGContextMoveToPoint(context, onKnobCenter.x,onKnobCenter.y - (smallKnobRadius / 2));
+    CGContextAddLineToPoint(context, onKnobCenter.x, onKnobCenter.y + (smallKnobRadius / 2));
+    CGContextStrokePath(context);
+    
     
     if(minimizeKnobVisible == YES) {
         // minimize knob
-        CGPoint minimizeKnobCenter = CGPointMake(onKnobCenter.x + 25, onKnobCenter.y);
-        UIBezierPath* minimizeKnob = [UIBezierPath bezierPathWithArcCenter:minimizeKnobCenter radius:smallKnobRadius startAngle:M_PI*2 endAngle:0 clockwise:YES];
+        int smallKnobRadiusMinimize = 10;
+        
+        CGPoint minimizeKnobCenter = CGPointMake(onKnobCenter.x + 30, onKnobCenter.y);
+        UIBezierPath* minimizeKnob = [UIBezierPath bezierPathWithArcCenter:minimizeKnobCenter radius:smallKnobRadiusMinimize startAngle:M_PI*2 endAngle:0 clockwise:YES];
     
-        [minimizeKnob setLineWidth:2.0];
-        [[UIColor blackColor] setStroke];
+        [minimizeKnob setLineWidth:3.0];
+        [[UIColor darkGrayColor] setStroke];
+        [[UIColor lightGrayColor] setFill];
+        
         [minimizeKnob stroke];
+        [minimizeKnob fill];
+        
     }
     
     // instrument name label
     NSString* instrumentName = self.name;
-    CGPoint instNameLabelPosition = CGPointMake(rectangle.origin.x + (5*smallKnobRadius) + 10, rectangle.origin.y + 4);
-    
-    UIFont *instNameLabelFont = [UIFont boldSystemFontOfSize:19];
+    CGPoint instNameLabelPosition = CGPointMake(rectangle.origin.x + (5*smallKnobRadius) + 6, rectangle.origin.y + 4);
+
+    //UIFont *instNameLabelFont = [UIFont boldSystemFontOfSize:20];
+    UIFont *instNameLabelFont = [UIFont fontWithName:@"Arial-BoldItalicMT" size:20.0];
     CGSize valueRectStringSize = [instrumentName sizeWithFont:instNameLabelFont];
     CGRect valueRectString = CGRectMake(instNameLabelPosition.x, instNameLabelPosition.y, valueRectStringSize.width, valueRectStringSize.height);
     [[UIColor blackColor] setFill];
