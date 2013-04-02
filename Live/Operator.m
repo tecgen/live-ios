@@ -11,6 +11,8 @@
 
 @implementation Operator
 
+NSString *const instrumentName = @"Operator";
+
 Knob *knobCoarseD;
 Knob *knobFineD;
 Knob *knobLevelD;
@@ -41,7 +43,7 @@ BOOL switchFixedD;
     // draw the specific stuff here
     
     // override concrete instrument name
-    self.name = @"Operator";
+    self.name = instrumentName;
     [self drawTitleIn:rectangle withMinimizeKnobVisible:YES inContext:context];
     
     int paddingHeight = rectangle.size.height * 0.01;

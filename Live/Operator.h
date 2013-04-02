@@ -10,6 +10,8 @@
 
 @interface Operator : Instrument
 
+FOUNDATION_EXPORT NSString *const instrumentName;
+
 -(void) setFilter: (int) frequency;
 
 @end
