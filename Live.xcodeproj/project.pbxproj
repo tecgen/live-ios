@@ -20,6 +20,10 @@
 		C28E0462162DA90C00E9150B /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C28E0460162DA90C00E9150B /* iPhone.storyboard */; };
 		C28E0465162DA90C00E9150B /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C28E0463162DA90C00E9150B /* iPad.storyboard */; };
 		C28E0468162DA90C00E9150B /* LiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E0467162DA90C00E9150B /* LiveViewController.m */; };
+		C2F8E49216A1734E00170471 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F8E49116A1734E00170471 /* Instrument.m */; };
+		C2F8E49516A1752500170471 /* Operator.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F8E49416A1752500170471 /* Operator.m */; };
+		C2F8E49816A1773600170471 /* Knob.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F8E49716A1773600170471 /* Knob.m */; };
+		C2F8E49B16A1781D00170471 /* InstrumentPane.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F8E49A16A1781D00170471 /* InstrumentPane.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,14 @@
 		C28E0464162DA90C00E9150B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPad.storyboard; sourceTree = "<group>"; };
 		C28E0466162DA90C00E9150B /* LiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
 		C28E0467162DA90C00E9150B /* LiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveViewController.m; sourceTree = "<group>"; };
+		C2F8E49016A1734E00170471 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
+		C2F8E49116A1734E00170471 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
+		C2F8E49316A1752500170471 /* Operator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operator.h; sourceTree = "<group>"; };
+		C2F8E49416A1752500170471 /* Operator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operator.m; sourceTree = "<group>"; };
+		C2F8E49616A1773600170471 /* Knob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Knob.h; sourceTree = "<group>"; };
+		C2F8E49716A1773600170471 /* Knob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Knob.m; sourceTree = "<group>"; };
+		C2F8E49916A1781D00170471 /* InstrumentPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentPane.h; sourceTree = "<group>"; };
+		C2F8E49A16A1781D00170471 /* InstrumentPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstrumentPane.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +100,7 @@
 		C28E044E162DA90C00E9150B /* Live */ = {
 			isa = PBXGroup;
 			children = (
+				C2F8E48E16A1730100170471 /* UI */,
 				C28E0457162DA90C00E9150B /* LiveAppDelegate.h */,
 				C28E0458162DA90C00E9150B /* LiveAppDelegate.m */,
 				C28E0460162DA90C00E9150B /* iPhone.storyboard */,
@@ -113,6 +126,21 @@
 				C28E045E162DA90C00E9150B /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C2F8E48E16A1730100170471 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				C2F8E49016A1734E00170471 /* Instrument.h */,
+				C2F8E49116A1734E00170471 /* Instrument.m */,
+				C2F8E49316A1752500170471 /* Operator.h */,
+				C2F8E49416A1752500170471 /* Operator.m */,
+				C2F8E49616A1773600170471 /* Knob.h */,
+				C2F8E49716A1773600170471 /* Knob.m */,
+				C2F8E49916A1781D00170471 /* InstrumentPane.h */,
+				C2F8E49A16A1781D00170471 /* InstrumentPane.m */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +215,10 @@
 				C28E0459162DA90C00E9150B /* LiveAppDelegate.m in Sources */,
 				C28E0468162DA90C00E9150B /* LiveViewController.m in Sources */,
 				C201458A16442F2600CD409D /* LiveView.m in Sources */,
+				C2F8E49216A1734E00170471 /* Instrument.m in Sources */,
+				C2F8E49516A1752500170471 /* Operator.m in Sources */,
+				C2F8E49816A1773600170471 /* Knob.m in Sources */,
+				C2F8E49B16A1781D00170471 /* InstrumentPane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +310,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Live/Live-Prefix.pch";
 				INFOPLIST_FILE = "Live/Live-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -289,6 +322,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Live/Live-Prefix.pch";
 				INFOPLIST_FILE = "Live/Live-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
