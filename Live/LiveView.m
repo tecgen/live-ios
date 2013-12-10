@@ -78,7 +78,7 @@ InstrumentPane *instrumentPane;
 
     
     // using OOP drawing
-    instrumentPane = [InstrumentPane new];
+    instrumentPane = [[InstrumentPane alloc] init];
     //TODO set colour theme here
     CGRect rectangle = CGRectMake(2, 2, 1500, 440);
     // scale when necessary

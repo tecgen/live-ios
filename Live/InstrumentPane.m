@@ -13,9 +13,6 @@
 #define MAX_NUMBER_OF_MIDI_EFX 3
 #define MAX_NUMBER_OF_AUDIO_EFX 4
 
-#define MARGIN_WIDTH 25
-#define MARGIN_HEIGHT 10
-
 @implementation InstrumentPane
 
 //MIDIEfx *midiEfx[MAX_NUMBER_OF_MIDI_EFX];
@@ -35,19 +32,24 @@ Instrument *instrument;
     
     [self drawRectangeInSize:bgRectangle withRoundedEdges:10.0 withFillColor:backgroundColor inContext:context];
     
-    
+    CGRect margin;
+    margin.size.width = rectangle.size.width / 40;
+    margin.size.height = rectangle.size.height / 20;
     
     // arrange the instruments one after the other
-    //midiEfx[1] = [Scale new];
-    instrument = [Operator new];
+    //midiEfx[1] = [[Scale alloc] init];
+    instrument = [[Operator alloc] init];
+    
     CGRect instrumentRectangle;
-    instrumentRectangle.origin.x = rectangle.origin.x + MARGIN_WIDTH;
-    instrumentRectangle.origin.y = rectangle.origin.y + MARGIN_HEIGHT;
-    instrumentRectangle.size.width = rectangle.size.width - (2 * MARGIN_WIDTH);
-    instrumentRectangle.size.height = rectangle.size.height - (2 * MARGIN_HEIGHT);
+    instrumentRectangle.origin.x = rectangle.origin.x + margin.size.width;
+    instrumentRectangle.origin.y = rectangle.origin.y + margin.size.height;
+    instrumentRectangle.size.width = rectangle.size.width - (2 * margin.size.width);
+    instrumentRectangle.size.height = rectangle.size.height - (2 * margin.size.height);
+    
     [instrument drawIn:instrumentRectangle inContext:context];
-    //audioEfx[1] = [EQ8 new];
-    //audioEfx[2] = [Compressor new];
+    
+    //audioEfx[1] = [[EQ8 alloc] init];
+    //audioEfx[2] = [[Compressor alloc] init];
     
     UIGraphicsPopContext();
 }
