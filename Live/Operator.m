@@ -43,10 +43,10 @@ BOOL switchFixedD;
     // draw the specific stuff here
     
     // override concrete instrument name
-    self.name = instrumentName;
+    [self setName:instrumentName];
     [self drawTitleIn:rectangle withMinimizeKnobVisible:YES inContext:context];
     
-    int paddingHeight = rectangle.size.height * 0.01;
+    NSInteger paddingHeight = rectangle.size.height * 0.01;
     CGRect displayRect;
     displayRect.origin.x = rectangle.origin.x + (rectangle.size.width / 3);
     displayRect.origin.y = rectangle.origin.y + (2*paddingHeight);
@@ -54,14 +54,10 @@ BOOL switchFixedD;
     displayRect.size.width = rectangle.size.width / 3;
     [self drawRectangeInSize:displayRect withRoundedEdges:10.0 withFillColor:[UIColor blackColor] inContext:context];
     
-    //TODO move to super class
-    int instrumentBarHeight = 35;
-    
-    
     CGRect oscRect;
     oscRect.origin.x = rectangle.origin.x + 4;
-    oscRect.origin.y = rectangle.origin.y + instrumentBarHeight;
-    oscRect.size.height = (rectangle.size.height - 2*instrumentBarHeight) / 4 ;
+    oscRect.origin.y = rectangle.origin.y + [self instrumentBarHeight];
+    oscRect.size.height = (rectangle.size.height - 2 * [self instrumentBarHeight]) / 4 ;
     oscRect.size.width = (rectangle.size.width / 3) * 0.97;
     
     [self drawOscInSize:oscRect withName:@"D" inContext:context];
@@ -89,10 +85,10 @@ BOOL switchFixedD;
     [self drawRectangeInSize:rectangle withRoundedEdges:10.0 withFillColor:rowUnselectedColor inContext:context];
     
     // first knob "Coarse"
-    int knobSize = rectangle.size.height * 0.95;
+    NSInteger knobSize = rectangle.size.height * 0.95;
     knobCoarseD = [Knob new];
     
-    int distanceX = 15;
+    NSInteger distanceX = 15;
     [knobCoarseD drawAt:CGRectMake(rectangle.origin.x + distanceX,
                                    rectangle.origin.y, knobSize,knobSize)
               withLabel:@"Coarse" andValueLabel:@"1" inContext:context];
@@ -140,29 +136,11 @@ BOOL switchFixedD;
 }
 
 
--(void) setFilter: (int) frequency
+-(void) setFilter: (NSInteger) frequency
 {
     // set knob xyz value
 }
 
-// TODO move to an helper class or generic super class?
--(void) drawRectangeInSize:(CGRect)rectangle
-          withRoundedEdges:(float)cornerRadius
-             withFillColor:(UIColor*)fillColor
-                 inContext:(CGContextRef)context
-{
-    UIGraphicsPushContext(context);
-    
-    // rectangle with rounded edges
-    CGContextSetLineWidth(context, 5.0);
-    [fillColor setFill];
-    [fillColor setStroke];
-    UIBezierPath* roundedRect = [UIBezierPath bezierPathWithRoundedRect:rectangle cornerRadius:cornerRadius];
-    [roundedRect setLineWidth:5.0];
-    [roundedRect fill];
-    [roundedRect stroke];
-    
-    UIGraphicsPopContext();
-}
+
 
 @end

@@ -12,6 +12,6 @@
 
 FOUNDATION_EXPORT NSString *const instrumentName;
 
--(void) setFilter: (int) frequency;
+-(void) setFilter: (NSInteger) frequency;
 
 @end

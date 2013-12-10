@@ -12,6 +12,7 @@
 
 @synthesize name = _name;
 @synthesize patch = _patch;
+@synthesize size = _size;
 
 -(void) drawIn:(CGRect) rectangle
      inContext:(CGContextRef)context
@@ -21,6 +22,7 @@
     
     self.name = @"Generic Instrument";
     self.patch = @"Default Patch";
+    [self setSize:&rectangle];
     
     //draw all the generic instrument stuff here
     
@@ -105,7 +107,6 @@ withMinimizeKnobVisible:(BOOL) minimizeKnobVisible
     
 }
 
-// TODO move to an helper class or generic super class?
 -(void) drawRectangeInSize:(CGRect)rectangle
           withRoundedEdges:(float)cornerRadius
              withFillColor:(UIColor*)fillColor
@@ -123,6 +124,14 @@ withMinimizeKnobVisible:(BOOL) minimizeKnobVisible
     [roundedRect stroke];
     
     UIGraphicsPopContext();
+}
+
+-(NSInteger) instrumentBarHeight
+{
+    
+    NSInteger *result = (NSInteger) CGRectGetHeight(*[self size]) / 10;
+    
+    return result;
 }
 
 @end

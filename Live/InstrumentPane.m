@@ -32,15 +32,14 @@ Instrument *instrument;
     
     [self drawRectangeInSize:bgRectangle withRoundedEdges:10.0 withFillColor:backgroundColor inContext:context];
     
-    CGRect margin;
-    margin.size.width = rectangle.size.width / 40;
-    margin.size.height = rectangle.size.height / 20;
-    
     // arrange the instruments one after the other
     //midiEfx[1] = [[Scale alloc] init];
     instrument = [[Operator alloc] init];
     
     CGRect instrumentRectangle;
+    CGRect margin;
+    margin.size.width = rectangle.size.width / 40;
+    margin.size.height = rectangle.size.height / 20;
     instrumentRectangle.origin.x = rectangle.origin.x + margin.size.width;
     instrumentRectangle.origin.y = rectangle.origin.y + margin.size.height;
     instrumentRectangle.size.width = rectangle.size.width - (2 * margin.size.width);
