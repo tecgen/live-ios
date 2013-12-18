@@ -19,12 +19,16 @@
 
 -(void) drawTitleIn:(CGRect) rectangle
 withMinimizeKnobVisible:(BOOL) minimizeKnobVisible
-          inContext:(CGContextRef)context;
+          inContext:(CGContextRef) context;
 
--(void) drawRectangeInSize:(CGRect)rectangle
-          withRoundedEdges:(float)cornerRadius
-             withFillColor:(UIColor*)fillColor
-                 inContext:(CGContextRef)context;
+-(void) drawRectangeInSize:(CGRect) rectangle
+          withRoundedEdges:(float) cornerRadius
+             withFillColor:(UIColor*) fillColor
+                 inContext:(CGContextRef) context;
+
+-(void) drawKnobIn:(CGRect) rectangle
+          withName:(NSString*) name
+         inContext:(CGColorRef) context;
 
 -(NSInteger) instrumentBarHeight;
 
